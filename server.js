@@ -28,7 +28,9 @@ const typeDefs = gql`
     comprobanteTransaccion: String
     numeroCuenta: String
     banco: String
-  }
+    codigoError: String
+    detalleError: String
+}
 
   type Payment {
     Id: String
