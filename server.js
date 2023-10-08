@@ -7,13 +7,19 @@ const cosmosDbEndpoint = process.env.COSMODB_STRING;
 const cosmosDbMasterKey = process.env.COSMODB_KEY;
 const cosmosDbDatabaseId = process.env.COSMODB_DB;
 const cosmosDbContainerId = process.env.COSMODB_TABLE;
+const cosmosFullDbEndpoint = process.env.COSMODB_FULL
 
-const cosmosClient = new CosmosClient({
-  endpoint: cosmosDbEndpoint,
-  auth: {
-    masterKey: cosmosDbMasterKey,
-  },
-});
+const cosmosClient = new CosmosClient(cosmosFullDbEndpoint);
+
+//const cosmosClient = new CosmosClient({ cosmosDbEndpoint, cosmosDbMasterKey });
+
+//const cosmosClient = new CosmosClient({
+//  endpoint: cosmosDbEndpoint,
+//  auth: {
+//    ApplicationName: "abcjobs",
+//    key: cosmosDbMasterKey,
+//  },
+//});
 
 const typeDefs = gql`
   type Transaction {
@@ -23,7 +29,8 @@ const typeDefs = gql`
   }
 
   type Payment {
-    NumeroPago: String
+    Id: String
+    numeroPago: String
     fecha: String
     paisOrigen: String
     paisDestino: String
@@ -35,20 +42,21 @@ const typeDefs = gql`
   }
 
   type Query {
-    getPayment(NumeroPago: String!): Payment
+    getPayment(Id: String!): Payment
   }
 `;
 
 const resolvers = {
   Query: {
-    getPayment: async (_, { NumeroPago }) => {
+    getPayment: async (_, { Id }) => {
       try {
-        const { database } = await cosmosClient.databases.createIfNotExists({ id: cosmosDbEndpoint });
+        const { database } = await cosmosClient.databases.createIfNotExists({ id: cosmosDbDatabaseId });
         const { container } = await database.containers.createIfNotExists({ id: cosmosDbContainerId });
 
-        const { resource } = await container.item(NumeroPago).read();
+        const { resource } = await container.item(Id).read();
         return resource;
       } catch (error) {
+        console.log(error);
         throw error;
       }
     },
