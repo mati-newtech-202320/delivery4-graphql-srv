@@ -26,6 +26,8 @@ const typeDefs = gql`
     tipoTransaccion: String
     monto: Float
     comprobanteTransaccion: String
+    numeroCuenta: String
+    banco: String
   }
 
   type Payment {
@@ -38,6 +40,7 @@ const typeDefs = gql`
     monedaOrigen: String
     monto: Float
     comprobantePago: String
+    estado: String
     transacciones: [Transaction]
   }
 

@@ -8,10 +8,13 @@ query {
     comprobantePago
     monedaDestino
     monedaOrigen
+    estado
     transacciones {
       comprobanteTransaccion
       monto
       tipoTransaccion
+      banco
+      numeroCuenta
     }
   }
 }
