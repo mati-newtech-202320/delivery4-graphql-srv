@@ -1,0 +1,17 @@
+query {
+  getPayment(Id: "ed8dd87a-ff78-4c87-b44f-de5b5f5d0458") {
+    numeroPago
+    fecha
+    paisOrigen
+    paisDestino
+    monto
+    comprobantePago
+    monedaDestino
+    monedaOrigen
+    transacciones {
+      comprobanteTransaccion
+      monto
+      tipoTransaccion
+    }
+  }
+}
