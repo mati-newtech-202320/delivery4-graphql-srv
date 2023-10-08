@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "@azure/cosmos": "^4.0.0",
+    "apollo-server": "^3.12.1",
+    "azure-cosmos": "^0.0.1-security.3",
+    "dotenv": "^16.3.1",
+    "graphql": "^16.8.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "delivery4-graphql-srv",
+  "description": "Server of Graphql usign Apollo and Apollo-Playground consulting CosmoDB Database",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "Juan Carlos Cepda Valero <juank1400@gmail.com>",
+  "license": "MIT"
+}
