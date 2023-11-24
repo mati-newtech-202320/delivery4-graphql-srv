@@ -30,6 +30,7 @@ const typeDefs = gql`
     banco: String
     codigoError: String
     detalleError: String
+    direccionContrato: String
 }
 
   type Payment {
